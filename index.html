@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #textbox {
+            width: 99%;
+            border-color: rgb(5, 105, 227);
+            font-size: 25px;
+            border-radius: 25px;
+            border: px;
+            color: #e2d0bc;
+            ;
+            background: #333;
+        }
+        
+        body {
+            padding: 67px 100px;
+            border-radius: 20px;
+            background: #6d9bc3;
+        }
+        
+        h1 {
+            text-align: center;
+            background-color: #009f6b;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        p {
+            text-align: center;
+            background: #c9a782;
+            font-size: 25px;
+            color: #ff3988(10, 10, 11);
+            padding: 5px;
+            border-radius: 23px;
+            margin: 2px;
+            font-style: italic;
+        }
+        
+        div {
+            justify-content: center;
+            font-size: 25px;
+            color: rgb(10, 10, 11);
+            padding: 5px;
+            border-radius: 23px;
+            margin: 10px;
+            height: 50px;
+            width: auto;
+            /* font-weight: bold; */
+        }
+        
+        btn {
+            justify-content: center;
+            padding: 5px;
+            border-radius: 23px;
+            margin: 10px;
+            height: 34px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>WORD & Character Counter</h1>
+    <div>
+        <button type="button" onclick="bStyle()" id="bold" class="btn btn-info">
+        Bold
+      </button>
+        <button type="button" id="italic" onclick="iStyle()" class="btn btn-dark ">
+        Italic
+      </button>
+        <button type="button" id="uCase" onclick="uCase()" class="btn btn-success ">
+        Upper Case
+      </button>
+        <button type="button" id="lCase" onclick="lCase()" class="btn btn-primary ">
+        Lower Case
+      </button>
+        <button type="button" id="cTxt" class="btn btn-danger">ClearText</button>
+    </div>
+
+    <textarea name="textbox" id="textbox" cols="30" rows="10"></textarea>
+
+    <p>
+        <span id="word">0</span> words and
+        <span id="character">0</span> characters
+    </p>
+
+    <script>
+        let textbox = document.getElementById("textbox");
+        textbox.addEventListener("input", function() {
+            var text = this.value;
+            let char = text.length;
+            // console.log(char);
+            document.getElementById("character").innerHTML = char;
+            text = text.trim();
+
+            let wrd = text.split(" ");
+            var cleanList = wrd.filter(function(element) {
+                return element != " ";
+            });
+            // console.log(cleanList);
+            document.getElementById("word").innerHTML = cleanList.length;
+        });
+
+        //upper case
+
+        function uCase() {
+            let text = document.getElementById("textbox").value;
+            let uCase = text.toUpperCase();
+            document.getElementById("textbox").value = uCase;
+        }
+
+        document.getElementById("uCase").addEventListener("click", uCase());
+
+        //clear txt
+        let clrtext = document.getElementById('cTxt');
+        clrtext.addEventListener('click', () => {
+            textbox.value = '';
+        })
+
+        //lower CAASe
+        function lCase() {
+            let text = document.getElementById("textbox").value;
+            let lCase = text.toLowerCase();
+            document.getElementById("textbox").value = lCase;
+        }
+        document.getElementById("lCase").addEventListener("click", lCase);
+
+
+        //bolddd
+        document.getElementById('textbox');
+        const bold = document.getElementById('bold');
+
+        bold.addEventListener('click', () => {
+            const currentFontWeight = textbox.style.fontWeight;
+            textbox.style.fontWeight = currentFontWeight === 'bold' ? 'normal' : 'bold';
+        });
+        //old
+
+
+        // function bStyle() {
+        //     var textArea = document.getElementById('textbox');
+        //     // textArea.style.fontWeight = 'bold';
+        //     let z = textArea.style.fontWeight = 'bold';
+        //     textArea.style.fontWeight = z === 'bold' ? 'normal' : 'bold'
+        // }
+        // let x = document.getElementById('bold').addEventListener('click', bStyle);
+        // console.log(x)
+
+        //italicccc
+        document.getElementById('textbox');
+        const italic = document.getElementById('italic')
+        italic.addEventListener('click', () => {
+            const currentFontWeight = textbox.style.fontStyle;
+            textbox.style.fontStyle = currentFontWeight === 'italic' ? 'normal' : 'italic';
+        })
+    </script>
+</body>
+
+</html>
